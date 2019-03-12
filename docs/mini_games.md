@@ -1,262 +1,217 @@
-# DeepMind Mini Games
 
-## MoveToBeacon
+| [스타크래프트 II 학습 환경](../README.md) | [환경](../docs/environment.md) | [작은놀이](../docs/mini_games.md) | [지도](../docs/maps.md) |  
+| --- | --- | --- | --- |  
 
-#### Description
+# 딥마인드 작은 놀이
 
-A map with 1 Marine and 1 Beacon. Rewards are earned by moving the marine to the
-beacon. Whenever the Marine earns a reward for reaching the Beacon, the Beacon
-is teleported to a random location (at least 5 units away from Marine).
+## 1 봉화로 이동(MoveToBeacon)
 
-#### Initial State
+### 1-1) 설명
 
-*   1 Marine at random location (unselected)
-*   1 Beacon at random location (at least 4 units away from Marine)
+해병 1개 봉화 1개가 있는 지도. 포상은 해병이 봉화로 움직이면 얻는다. 언제나 해병의 봉화 도달에 대해 포상을 얻는다, 봉화는 뿌림위치로 순간이동된다(해병으로부터 적어도 5단위 멀리).
 
-#### Rewards
+### 1-2) 초기 상태
 
-*   Marine reaches Beacon: +1
+- 뿌림위치에 해병 1개 (선택안됨)  
+- 뿌림위치에 봉화 1개 (해병으로부터 적어도 4단위 멀리)  
 
-#### End Condition
+### 1-3) 포상
 
-*   Time elapsed
+- 해병이 봉화에 도달: +1  
 
-#### Time Limit
+### 1-4) 종료 조건
 
-*   120 seconds
+- 시간 경과
 
-#### Additional Notes
+### 1-5) 시간 제한
 
-*   Fog of War disabled
-*   No camera movement required (single-screen)
+- 120 초  
 
-## CollectMineralShards
+### 1-6) 추가적인 알림
 
-#### Description
+- 전쟁징조 비활성  
+- 카메라 움직임 필요없음(단일 화면)  
 
-A map with 2 Marines and an endless supply of Mineral Shards. Rewards are earned
-by moving the Marines to collect the Mineral Shards, with optimal collection
-requiring both Marine units to be split up and moved independently. Whenever all
-20 Mineral Shards have been collected, a new set of 20 Mineral Shards are
-spawned at random locations (at least 2 units away from all Marines).
+## 2 광물조각 수집(CollectMineralShards)
 
-#### Initial State
+### 2-1) 설명
 
-*   2 Marines at random locations (unselected)
-*   20 Mineral Shards at random locations (at least 2 units away from all
-    Marines)
+해병 2개와 광물조각을 끝없이 공급하는 지도. 포상은 광물조각을 수집하기 위해 해병을 움직이면 얻는다, 해병 둘다 분리되고 독립적으로 이동이 요구된 최적 수집과 함께. 광물조각 20개 모두 수집하면 언제나, 20개 광물조각의 새로운 집합은 뿌림위치에 생긴다(모든 해병으로 부터 적어도 2단위 멀리).
 
-#### Rewards
+### 2-2) 초기 상태
 
-*   Marine collects Mineral Shard: +1
+- 뿌림위치에 해병 2개 (선택안됨)  
+- 뿌림위치에 광물조각 20개 (모든 해병으로부터 적어도 2단위 멀리)  
 
-#### End Condition
+### 2-3) 포상
 
-*   Time elapsed
+- 해병이 광물조각 수집: +1
 
-#### Time Limit
+### 2-4) 종료 조건
 
-*   120 seconds
+- 시간 경과
 
-#### Additional Notes
+### 2-5) 시간 제한
 
-*   Fog of War disabled
-*   No camera movement required (single-screen)
-*   This is the only map in the set to require the Liberty (Campaign) mod, which
-    is needed for the Mineral Shard unit.
+- 120 초
 
-## FindAndDefeatZerglings
+### 2-6) 추가적인 알림
 
-#### Description
+- 전쟁징조 비활성  
+- 카메라 움직임 필요없음(단일 화면)  
+- 이것은 특권(Liberty, Campaign) 모드가 필요한 유일한 지도다, 이것은 광물조각 단위를 위해 필요하다.
 
-A map with 3 Marines and an endless supply of stationary Zerglings. Rewards are
-earned by using the Marines to defeat Zerglings, with the optimal strategy
-requiring a combination of efficient exploration and combat. Whenever all 25
-Zerglings have been defeated, a new set of 25 Zerglings are spawned at random
-locations (at least 9 units away from all Marines and at least 5 units away from
-all other Zerglings).
 
-#### Initial State
+## 3 저글링을 찾고 쳐부수기(FindAndDefeatZerglings)
 
-*   3 Marines at map center (preselected)
-*   2 Zerglings spawned at random locations inside player's vision range
-    (between 7.5 and 9.5 units away from map center and at least 5 units away
-    from all other Zerglings)
-*   23 Zerglings spawned at random locations outside player's vision range (at
-    least 10.5 units away from map center and at least 5 units away from all
-    other Zerglings)
+### 3-1) 설명
 
-#### Rewards
+해병 3개와 고정된 저글링을 끝없이 공급하는 지도. 포상은 저글링을 쳐부수기 위해 해병을 사용하면 얻는다, 탐사와 전투가 효율적 결합이 요구된 최적 전략과 함께. 25개 저글링 모두를 쳐부수면 언제나, 25개 저글링의 새로운 집합은 뿌림위치에 생긴다(모든 해병으로부터 적어도 9단위 멀리 그리고 다른 모든 저글링으로부터 적어도 5단위 멀리).
 
-*   Zergling defeated: +1
-*   Marine defeated: -1
+### 3-2) 초기 상태
 
-#### End Conditions
+- 지도 중앙에 해병 3개(미리 선택됨)
+- 저글링 2개는 놀이꾼 시야범위 내에서 뿌림위치에 생김(지도 중앙으로 부터 7.5와 9.5 사이 멀리 그리고 모든 다른 저글링으로 부터 적어도 5단위 멀리)
+- 23개 저글링은 놀리꾼 시야범위 바깥의 뿌림위치에 생성(지도 중알으로 부터 적어도 10.5단위 멀리 그리고 다른 모든 저글링으로 부터 적어도 5단위 멀리)
 
-*   Time elapsed
-*   All Marines defeated
+### 3-3) 포상
 
-#### Time Limit
+- 저글링 부셔짐: +1  
+- 해병 부셔짐: -1  
 
-*   180 seconds
+### 3-4) 종료 조건
 
-#### Additional Notes
+- 시간 경과  
+- 모든 해병 부셔짐  
 
-*   Fog of War enabled
-*   Camera movement required (map is larger than single-screen)
+### 3-5) 시간 제한
 
-## DefeatRoaches
+- 180 초
 
-#### Description
+### 3-6) 추가적인 알림
 
-A map with 9 Marines and a group of 4 Roaches on opposite sides. Rewards are
-earned by using the Marines to defeat Roaches, with optimal combat strategy
-requiring the Marines to perform focus fire on the Roaches. Whenever all 4
-Roaches have been defeated, a new group of 4 Roaches is spawned and the player
-is awarded 5 additional Marines at full health, with all other surviving Marines
-retaining their existing health (no restore). Whenever new units are spawned,
-all unit positions are reset to opposite sides of the map.
+- 전쟁징조 비활성  
+- 카메라 움직임 필요없음(단일 화면)  
 
-#### Initial State
 
-*   9 Marines in a vertical line at a random side of the map (preselected)
-*   4 Roaches in a vertical line at the opposite side of the map from the
-    Marines
+## 4 바퀴벌레 쳐부수기(DefeatRoaches)
 
-#### Rewards
+### 4-1) 설명
 
-*   Roach defeated: +10
-*   Marine defeated: -1
+해병 9개와 반대쪽에 바퀴벌레 4개 무리가 있는 지도. 포상은 바퀴벌레를 쳐부수기 위해 해병을 사용하면 얻는다, 해병이 바퀴벌레에 집중공격을 수행하기 위해 요구된 최적 전투 전략과 함께. 4개 바퀴벌레 모두를 쳐부수면 언제나, 4개 바퀴벌레의 새로운 무리가 뿌려진다 그리고 놀이꾼은 기운찬 건강인 해병 5개를 추가적으로 준다, 모든 다른 해병은 가진 건강을 유지한다(복원 안함). 새로운 집단이 생기면 언제나, 모든 집단 위치는 지도의 반대쪽으로 재설정된다.
 
-#### End Conditions
+### 4-2) 초기 상태
 
-*   Time elapsed
-*   All Marines defeated
+- 9개 해병은 세로줄로 지도의 뿌림 면에(미리 선택됨)  
+- 4개 바퀴벌레는 세로줄로 해병대로부터 지도의 반대쪽에  
 
-#### Time Limit
+### 4-3) 포상
 
-*   120 seconds
+- 바퀴벌레 부셔짐: +10  
+- 해병 부셔짐: -1  
 
-#### Additional Notes
+### 4-4) 종료 조건
 
-*   Fog of War disabled
-*   No camera movement required (single-screen)
-*   This map and DefeatZerglingsAndBanelings are currently the only maps in the
-    set that can include an automatic, mid-episode state change for
-    player-controlled units. The Marine units are automatically moved back to a
-    neutral position (at a random side of the map opposite the Roaches) when new
-    units are spawned, which occurs whenever the current set of Roaches is
-    defeated. This is done in order to guarantee that new units do not spawn
-    within combat range of one another.
+- 시간 경과  
+- 모든 해병 부셔짐  
 
-## DefeatZerglingsAndBanelings
+### 4-5) 시간 제한
 
-#### Description
+- 120 초  
 
-A map with 9 Marines on the opposite side from a group of 6 Zerglings and 4
-Banelings. Rewards are earned by using the Marines to defeat Zerglings and
-Banelings. Whenever all Zerglings and Banelings have been defeated, a new group
-of 6 Zerglings and 4 Banelings is spawned and the player is awarded 4 additional
-Marines at full health, with all other surviving Marines retaining their
-existing health (no restore). Whenever new units are spawned, all unit positions
-are reset to opposite sides of the map.
+### 4-6) 추가적인 알림
 
-#### Initial State
+- 전쟁징조 비활성  
+- 카메라 움직임 필요없음(단일 화면)  
+- 이 지도와 저글링과 바넬링 쳐부수기(DefeatZerglingsAndBanelings)는 현재 자동으로 포함될수 있는 집합의 유일한 지도다, 중간-토막 상태는 놀이꾼-제어 단위에 대해 변경한다. 해병 집단은 새로운 집단이 생겼을때 자동적으로 중립 위치로 물러난다(바퀴벌레 지도 반대쪽에 뿌림으로) 이것은 현재 바퀴벌레 집합이 부셔지면 언제나 발생한다. 이것은 새로운 집단이 서로의 전투 범위 내에서 생기지 않는 것을 보장한다.  
 
-*   9 Marines in a vertical line at a random side of the map (preselected)
-*   6 Zerglings and 4 Banelings in a group at the opposite side of the map from
-    the Marines
+## 5 저글링과 바넬링 쳐부수기(DefeatZerglingsAndBanelings)
 
-#### Rewards
+### 5-1) 설명
 
-*   Zergling defeated: +5
-*   Baneling defeated: +5
-*   Marine defeated: -1
+6개 저글링과 4개 바넬링 무리로 부터 반대쪽에 해병 9개가 있는 지도. 포상은 저글링과 바넬링을 쳐부수기 위해 해병을 사용하면 얻는다. 모든 저글링과 바넬링이 부셔지면 언제나, 6개 저글링과 4개 바넬링의 새로운 무리가 생긴다 그리고 놀이꾼은 기운찬 건강인 해병 4개를 추가적으로 준다, 모든 다른 해병은 가진 건강을 유지한다(복원 안함). 새로운 집단이 생기면 언제나, 모든 집단 위치는 지도의 반대쪽으로 재설정된다.
 
-#### End Conditions
+### 5-2) 초기 상태
 
-*   Time elapsed
-*   All Marines defeated
+- 9개 해병은 세로줄로 지도의 뿌림 면에(미리 선택됨)
+- 6개 저글링과 4개 바넬링은 무리로 해병대로부터 지도의 반대쪽에
 
-#### Time Limit
+### 5-3) 포상
 
-*   120 seconds
+- 바넬링 부셔짐: +5
+- 저글링 부셔짐: +5
+- 해병 부셔짐: -1
 
-#### Additional Notes
+### 5-4) 종료 조건
 
-*   Fog of War disabled
-*   No camera movement required (single-screen)
-*   This map and DefeatRoaches are currently the only maps in the set that can
-    include an automatic, mid-episode state change for player-controlled units.
-    The Marine units are automatically moved back to a neutral position (at a
-    random side of the map opposite the Roaches) when new units are spawned,
-    which occurs whenever the current set of Zerglings and Banelings is
-    defeated. This is done in order to guarantee that new units do not spawn
-    within combat range of one another.
+- 시간 경과
+- 모든 해병 부셔짐
 
-## CollectMineralsAndGas
+### 5-5) 시간 제한
 
-#### Description
+- 120 초
 
-A map with 12 SCVs, 1 Command Center, 16 Mineral Fields and 4 Vespene Geysers.
-Rewards are based on the total amount of Minerals and Vespene Gas collected.
-Spending Minerals and Vespene Gas to train new units does not decrease your
-reward tally. Optimal collection will require expanding your capacity to gather
-Minerals and Vespene Gas by constructing additional SCVs and an additional
-Command Center.
+### 5-6) 추가적인 알림
 
-#### Initial State
+- 전쟁징조 비활성  
+- 카메라 움직임 필요없음(단일 화면)  
+- 이 지도와 저글링과 바넬링 쳐부수기(DefeatZerglingsAndBanelings)는 현재 자동으로 포함될수 있는 집합의 유일한 지도다, 중간-토막 상태는 놀이꾼-제어 단위에 대해 변경한다. 해병 집단은 새로운 집단이 생겼을때 자동적으로 중립 위치로 물러난다(바퀴벌레 지도 반대쪽에 뿌림으로) 이것은 현재 저글링과 바넬링 집합이 부셔지면 언제나 발생한다. 이것은 새로운 집단이 서로의 전투 범위 내에서 생기지 않는 것을 보장한다.
 
-*   12 SCVs beside the Command Center (unselected)
-*   1 Command Center at a fixed location
-*   16 Mineral Fields at fixed locations
-*   4 Vespene Geysers at fixed locations
-*   Player Resources: 50 Minerals, 0 Vespene, 12/15 Supply
+## 6 광물과 가스 수집(CollectMineralsAndGas)
 
-#### Rewards
+### 6-1) 설명
 
-Reward total is equal to the total amount of Minerals and Vespene Gas collected
+이 지도는 12개 SCV, 1개 명령센터, 16개 광산과 4개 베스핀 간헐천이 함께 있다. 포상은 수집된 광물과 베스핀 가스의 총량을 기반으로 한다. 새로운 집단을 벼림하기 위해 광물과 베스핀 가스의 소비는 자신의 누적포상을 감소시키지 않는다. 최적 수집은 추가적인 SCV와 추가적인 명령센터를 건설하는 동안에 광물과 베스핀 가스를 수집하기 위해 자신의 저장량 확장이 요구된다.
 
-#### End Condition
+### 6-2) 초기 상태
 
-Time elapsed
+- 명령센터 옆에 12개의 SCV(선택안됨)  
+- 고정된 위치에 1개의 명령센터  
+- 고정된 위치에 16개 광산  
+- 고정된 위치에 4개의 베스핀 간헐천  
+- 놀이꾼 자원: 광물 50, 베스핀 0, 물자 12/15  
 
-#### Time Limit
+### 6-3) 포상
 
-300 seconds
+- 총 포상은 수십된 광물과 베스핀 가스의 총량과 같다
 
-## BuildMarines
+### 6-4) 종료 조건
 
-#### Description
+- 시간 경과
 
-A map with 12 SCVs, 1 Command Center, and 8 Mineral Fields. Rewards are earned
-by building Marines. This is accomplished by using SCVs to collect minerals,
-which are used to build Supply Depots and Barracks, which can then build
-Marines.
+### 6-5) 시간 제한
 
-#### Initial State
+- 300 초
 
-*   12 SCVs beside the Command Center (unselected)
-*   1 Command Center at a fixed location
-*   8 Mineral Fields at fixed locations
-*   Player Resources: 50 Minerals, 0 Vespene, 12/15 Supply
+## 7 해병 구축(BuildMarines)
 
-#### Rewards
+### 7-1) 설명
 
-Reward total is equal to the total number of Marines built
+이 지도는 12개 SCV, 1개 명령센터, 그리고 8개 광산이 함께 있다. 포상은 해병을 구축함으로써 얻어진다. 이것은 광물을 수집하기 위해 SCV를 사용함으로써 성취된다, 이것은 물자창고(Supply Depot)와 막사(Barracks)를 구축하기 위해 사용된다, 그런다음 해병을 구축할수 있다.
 
-#### End Condition
+### 7-2) 초기 상태
 
-Time elapsed
+- 명령센터 옆에 12개의 SCV(선택안됨)  
+- 고정된 위치에 1개의 명령센터  
+- 고정된 위치에 8개 광산  
+- 놀이꾼 자원: 광물 50, 베스핀 0, 물자 12/15  
 
-#### Time Limit
+### 7-3) 포상
 
-900 seconds
+- 총 포상은 구축된 해병의 총수와 같다
 
-#### Additional Notes
+### 7-4) 종료 조건
 
-*   Fog of War disabled
-*   No camera movement required (single-screen)
-*   This is the only map in the set that explicitly limits the available actions
-    of the units to disallow actions which are not pertinent to the goal of the
-    map. Actions that are not required for building Marines have been removed.
+- 시간 경과
+
+### 7-5) 시간 제한
+
+- 900 초
+
+### 7-6) 추가적인 알림
+
+- 전쟁징조 비활성  
+- 카메라 움직임 필요없음(단일 화면)  
+- 이것은 지도의 목표와 관련이 없는 소행을 금지하기 위해 가능한 집단소행을 명시적으로 제한하는 집합의 유일한 지도다.  
+
+

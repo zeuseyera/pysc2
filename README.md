@@ -1,230 +1,150 @@
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=-fKUyT14G-8"
-     target="_blank">
-    <img src="http://img.youtube.com/vi/-fKUyT14G-8/0.jpg"
-         alt="DeepMind open source PySC2 toolset for Starcraft II"
-         width="240" height="180" border="10" />
-  </a>
-  <a href="https://www.youtube.com/watch?v=6L448yg0Sm0"
-     target="_blank">
-    <img src="http://img.youtube.com/vi/6L448yg0Sm0/0.jpg"
-         alt="StarCraft II 'mini games' for AI research"
-         width="240" height="180" border="10" />
-  </a>
-  <a href="https://www.youtube.com/watch?v=WEOzide5XFc"
-     target="_blank">
-    <img src="http://img.youtube.com/vi/WEOzide5XFc/0.jpg"
-         alt="Trained and untrained agents play StarCraft II 'mini-game'"
-         width="240" height="180" border="10" />
-  </a>
-</div>
+:kr: 스타크래프트 II 학습 환경
 
-# PySC2 - StarCraft II Learning Environment
+| [스타크래프트 II 학습 환경](./README.md) | [환경](./docs/environment.md) | [작은놀이](./docs/mini_games.md) | [지도](./docs/maps.md) |  
+| --- | --- | --- | --- |  
 
-[PySC2](https://github.com/deepmind/pysc2) is [DeepMind](http://deepmind.com)'s
-Python component of the StarCraft II Learning Environment (SC2LE). It exposes
-[Blizzard Entertainment](http://blizzard.com)'s [StarCraft II Machine Learning
-API](https://github.com/Blizzard/s2client-proto) as a Python RL Environment.
-This is a collaboration between DeepMind and Blizzard to develop StarCraft II
-into a rich environment for RL research. PySC2 provides an interface for RL
-agents to interact with StarCraft 2, getting observations and sending actions.
+| [![fKUyT14G-8](https://img.youtube.com/vi/-fKUyT14G-8/0.jpg)](https://www.youtube.com/watch?v=-fKUyT14G-8) | [![6L448yg0Sm0](https://img.youtube.com/vi/6L448yg0Sm0/0.jpg)](https://www.youtube.com/watch?v=6L448yg0Sm0) | [![WEOzide5XFc](https://img.youtube.com/vi/WEOzide5XFc/0.jpg)](https://www.youtube.com/watch?v=WEOzide5XFc) |  
+| --- | --- | --- |  
+
+# 파이스크2 - 스타크래프트 II 학습 환경
+
+[파이스크2(PySC2)](https://github.com/deepmind/pysc2)는 [딥마인드](http://deepmind.com/)의 스타크래프트 II 학습 환경(SC2LE, StarCraft II Learning Environment) 파이썬 부품이다. 이것은 파이썬 강화학습 환경(Python RL Environment)으로 [블리자드 엔터테인먼트(Blizzard Entertainment)](http://blizzard.com/)의 [스타크래프트 II 기계학습 API(StarCraft II Machine Learning API)](https://github.com/Blizzard/s2client-proto)를 제공한다. 이것은 강화학습 연구를 위한 풍부한 환경의 스타크래프트2를 개발하기 위해 딥마인드와 블리자드간 협업하였다. 파이스크2(PySC2)는 스타크래프트2와 상호작용하기 위한 강화학습 똘마니에 대한 인터페이스를 제공한다, 관찰을 얻고 소행을 보내는.
+
+우리는 첨부처럼 [블로그포스트](https://deepmind.com/blog/deepmind-and-blizzard-open-starcraft-ii-ai-research-environment/)와 [논문](https://arxiv.org/abs/1708.04782)을 공개했다, 이것은 깊은강화학습 연구를 위해 스크2 사용를 사용하려는 우리의 동기를 설명한다, 그리고 이 환경을 이용한 일부 기초연구 결과다.
+
+### 요약
+
+면책조항: 이것은 공식 구글제품이 아니다. 
+만약 자신의 연구에 스크 II 기계학습 API(StarCraft II Machine Learning API) 와/또는 파이스크2(PySC2)를 사용하는 경우, [스크 II 논문](https://arxiv.org/abs/1708.04782)을 인용하시오.
+
+pysc2@deepmind.com 로 연락하시오.
 
 
-We have published an accompanying
-[blogpost](https://deepmind.com/blog/deepmind-and-blizzard-open-starcraft-ii-ai-research-environment/)
-and [paper](https://arxiv.org/abs/1708.04782), which outlines our
-motivation for using StarCraft II for DeepRL research, and some initial research
-results using the environment.
+## 1 빠른 시작 안내
 
-## About
+### 1-1) 파이스크2 가져오기
 
-Disclaimer: This is not an official Google product.
+#### 1-1-1) PyPI
 
-If you use the StarCraft II Machine Learning API and/or PySC2 in your research,
-please cite the [StarCraft II Paper](https://arxiv.org/abs/1708.04782)
+파이스크2(PySC2)를 얻는 가장쉬운 방법은 pip를 사용하는 것이다:
 
-You can reach us at [pysc2@deepmind.com](mailto:pysc2@deepmind.com).
-
-
-# Quick Start Guide
-
-## Get PySC2
-
-### PyPI
-
-The easiest way to get PySC2 is to use pip:
-
-```shell
+``` javascript  
 $ pip install pysc2
 ```
 
-That will install the `pysc2` package along with all the required dependencies.
-[virtualenv](https://pypi.python.org/pypi/virtualenv) can help manage your
-dependencies. You may also need to upgrade pip: `pip install --upgrade pip`
-for the `pysc2` install to work. If you're running on an older system you may
-need to install `libsdl` libraries for the `pygame` dependency.
+그러면 모든 필수 종속성과 함께 `pysc2`패키지가 설치된다. `virtualenv(가상환경)`은 자신의 종속성 관리에 도움을 줄수 있다. 또한 pip를 향상(upgrade)시킬 필요가 있을수도 있다: `pysc2`설치가 작동하도록 `pip install --upgrade pip`로 향상(upgrade) 하시오. 만약 오래된 시스템에서 실행한다면 `pygame` 종속성을 위해 `libsdl` 라이브러리를 서치해야할 필요가 있을수도 있다.
 
-Pip will install a few of the  binaries to your bin directory. `pysc2_play` can
-be used as a shortcut to `python -m pysc2.bin.play`.
+`pip`는 자신의 `bin` 디렉토리에 바이너리 몇개를 설치할 것이다. `pysc2_play`는 `python -m pysc2.bin.play`의 단축명령으로 사용될수 있다.
 
-### Git
+#### 1-1-2) Git
 
-Alternatively you can install PySC2 with git. First clone the PySC2 repo, then
-install the dependencies and `pysc2` package:
+아니면 `git`으로 파이스크2(PySC2)를 설치할수 있다. 먼저 파이스크2(PySC2) 저장소를 복제한다, 그런다음 종속성과 `pysc2` 패키지를 설치한다:  
 
-```shell
+``` javascript  
 $ git clone https://github.com/deepmind/pysc2.git
 $ pip install pysc2/
-```
+```  
 
-## Get StarCraft II
+### 1-2) 스타크래프트 II 가져오기
 
-PySC2 depends on the full StarCraft II game and only works with versions that
-include the API, which is 3.16.1 and above.
+파이스크2(PySC2)는 스타크래프트 II 놀이 전체에 의존한다 그리고 API가 포함된 판으로만 작동한다, 이것은 3.16.1 이다 그리고 이 이상.
 
-### Linux
+#### 1-2-1) 리눅스
 
-Follow Blizzard's [documentation](https://github.com/Blizzard/s2client-proto#downloads) to
-get the linux version. By default, PySC2 expects the game to live in
-`~/StarCraftII/`. You can override this path by setting the `SC2PATH`
-environment variable or creating your own run_config.
+다음은 리눅스판을 가져오기 위한 블리자드의 [문서](https://github.com/Blizzard/s2client-proto#downloads). 기본적으로, 파이스크2(PySC2)는 이 놀이가 `~/StarCraftII/`에 있을것으로 기대한다. `SC2PATH` 환경변수를 설정 또는 자신만의 실행구성(run_config)을 생성하여 이 경로를 대체할수 있다.
 
-### Windows/MacOS
+#### 1-2-2) 윈도우/맥
 
-Install of the game as normal from [Battle.net](https://battle.net). Even the
-[Starter Edition](http://battle.net/sc2/en/legacy-of-the-void/) will work.
-If you used the default install location PySC2 should find the latest binary.
-If you changed the install location, you might need to set the `SC2PATH`
-environment variable with the correct location.
+[Battle.net](https://battle.net/)에서 정상적으로 놀이를 설치하라. [시작용(Starter Edition)](https://www.battle.net/download/getInstallerForGame?gameProgram=STARCRAFT_2) 조차도 작동할 것이다. 만약 기본설치 위치를 사용한다면 파이스크2(PySC2)는 나중 바이너리를 찾아야 한다. 만약 설치위치를 변경했다면, 올바른 위치로 `SC2PATH` 환경변수를 설정해야 한다.
 
-PySC2 should work on MacOS and Windows systems running Python 2.7+ or 3.4+,
-but has only been thoroughly tested on Linux. We welcome suggestions and patches
-for better compatibility with other systems.
+파이스크2(PySC2)는 파이썬 2.7+ 또는 3.4+를 실행하는 맥 과 윈도우 시스템에서 작동해야 한다, 그러나 리눅스에서만 완전히 평가되었다. 우리는 다른 시스템과 좋은 호환성을 위해 제안과 패치를 환영한다.
 
-## Get the maps
+### 1-3) 지도 가져오기
 
-PySC2 has many maps pre-configured, but they need to be downloaded into the SC2
-`Maps` directory before they can be played.
+파이스크2(PySC2)는 미리구성된 지도를 많이 가지고 있다. 그러나 놀이를 하기 전에 스크2 `Maps`에 내려받을 필요가 있다.
 
-Download the [ladder maps](https://github.com/Blizzard/s2client-proto#downloads)
-and the [mini games](https://github.com/deepmind/pysc2/releases/download/v1.2/mini_games.zip)
-and extract them to your `StarcraftII/Maps/` directory.
+[승자전(토너먼트, ladder maps) 지도](https://github.com/Blizzard/s2client-proto#downloads)와 [작은놀이(mini games)](https://github.com/deepmind/pysc2/releases/download/v1.2/mini_games.zip)를 내려받는다 그리고 자신의 `StarcraftII/Maps/` 디렉토리로 추출한다.
 
-## Run an agent
+### 1-4) 똘마니 실행
 
-You can run an agent to test the environment. The UI shows you the actions of
-the agent and is helpful for debugging and visualization purposes.
+환경을 평가하기 위해 똘마니를 실행할수 있다. 사용자인터페이스(UI)는 똘마니의 소행을 보여준다 그리고 디버깅과 시각화 목적으로 유용하다.
 
-```shell
+``` javascript  
 $ python -m pysc2.bin.agent --map Simple64
-```
+```  
 
-It runs a random agent by default, but you can specify others if you'd like,
-including your own.
+이것은 기본적으로 뿌림하여 똘마니를 실행한다, 그러나 다른것을 지정할수 있다 만약 자신이 원하면.
 
-```shell
+``` javascript  
 $ python -m pysc2.bin.agent --map CollectMineralShards --agent pysc2.agents.scripted_agent.CollectMineralShards
-```
+```  
 
-You can also run two agents against each other.
+또한 서로 대항하는 두개의 똘마니를 실행할수 있다.
 
-```shell
+``` javascript  
 $ python -m pysc2.bin.agent --map Simple64 --agent2 pysc2.agents.random_agent.RandomAgent
-```
+```  
 
-To specify the agent's race, the opponent's difficulty, and more, you can pass
-additional flags. Run with `--help` to see what you can change.
+똘마니들의 경주를 지정하기 위해, 상대방의 어려움, 그리고 더, 추가적인 신호(플래그)를 전달할수 있다. `--help`를 사용하여 변경할수 있는 것을 보라.
 
-## Play the game as a human
+### 1-5) 사람이 놀이 놀기
 
-There is a human agent interface which is mainly used for debugging, but it can
-also be used to play the game. The UI is fairly simple and incomplete, but it's
-enough to understand the basics of the game. Also, it runs on Linux.
+디버깅을 위해 주로 사용되는 사람 똘마니 전달기, 그러나 이것은 또한 놀이를 놀기위해 사용된다. 사용자전달기(UI)는 아주 간단하고 불완전하다, 그러나 이것은 놀이의 기본을 이해하면 충분하다. 또한, 이것은 리눅스에서 실행된다.
 
-```shell
+``` javascript  
 $ python -m pysc2.bin.play --map Simple64
 ```
 
-In the UI, hit `?` for a list of the hotkeys. The most basic ones are: `F4` to
-quit, `F5` to restart, `F9` to save a replay, and `Pgup`/`Pgdn` to control the
-speed of the game. Otherwise use the mouse for selection and keyboard for
-commands listed on the left.
+사용자전달기(UI) 에서, 단축명령 목록을 위해 `?`를 눌러라. 가장 기본적인 것이 있다: 그만하기 위해 `F4`, 다시 시작하기 위해 `F5`, 재생을 저장하기 위해 `F9`, 그리고 놀이 속도를 조절하기 위해 `Pgup`/`Pgdn`. 다른 방법으로는 선택을 위해 마우스를 그리고 왼쪽에 나열된 명령을 하기위해 키보드를 사용한다.
 
-The left side is a basic rendering. The right side is the feature layers that
-the agent receives, with some coloring to make it more useful to us. You can
-enable or disable RGB or feature layer rendering and their resolutions with
-command-line flags.
+왼쪽은 기본칠 이다. 오른쪽은 똘마니가 받는 특징단이다, 우리에게 유용하게 쓰일 색칠이 되어있다. RGB 또는 특징단 칠을 사용함 또는 사용안함 할수 있다 그리고 해상도는 명령행 플래그를 사용한다.
 
-## Watch a replay
 
-Running an agent and playing as a human save a replay by default. You can watch
-that replay by running:
+### 1-6) 재생 관찰
 
-```shell
-$ python -m pysc2.bin.play --replay <path-to-replay>
-```
+똘마니를 실행하고 사람이 놀기는 기본적으로 재생을 저장한다. 다음을 실행하여 재생을 관찰할수 있다:
 
-This works for any replay as long as the map can be found by the game.
+``` javascript  
+$ python -m pysc2.bin.play --replay <재생하기-위한-경로>
+```  
 
-The same controls work as for playing the game, so `F4` to exit, `pgup`/`pgdn`
-to control the speed, etc.
+이것은 지도가 놀이로 찾을수 있는한 어떤 재생에 대해서도 작동된다. 놀이를 하는 것 처럼 동일한 제어로 작동한다, 그래서 나오기 위해 `F4`, 속도를 조절하기 위해 `Pgup`/`Pgdn`, 등. `--video` 플래그로 재생 동영상을 저장할수 있다.
 
-You can save a video of the replay with the `--video` flag.
+### 1-7) 지도 목록
 
-## List the maps
+[지도](https://github.com/zeuseyera/pysc2/blob/master/docs/maps.md)를 환경에 알리기 전에 구성할 필요가 있다. 다음 실행으로 알려진 목록을 볼수 있다.
 
-[Maps](docs/maps.md) need to be configured before they're known to the
-environment. You can see the list of known maps by running:
-
-```shell
+``` javascript  
 $ python -m pysc2.bin.map_list
-```
+```  
 
-## Run the tests
+### 1-8) 평가 실행
 
-If you want to submit a pull request, please make sure the tests pass on both
-python 2 and 3.
+만약 긁어오기 요청을 제출하기 원한다면, 파이썬 2와 3 모두 통과하는지 평가해 주시오.
 
-```shell
-$ python -m pysc2.bin.run_tests
-```
 
-# Environment Details
+## 2 자세한 환경
 
-For a full description of the specifics of how the environment is configured,
-the observations and action spaces work read the
-[environment documentation](docs/environment.md).
+환경 구성방법 지정의 전체 설명에 대해, 관찰과 소행공간 동작은 [환경 문서](https://github.com/zeuseyera/pysc2/blob/master/docs/environment.md)를 보라.
 
-# Mini-game maps
 
-The mini-game map files referenced in the paper are stored under `pysc2/maps/`
-but must be installed in `$SC2PATH/Maps`. Make sure to follow the download
-instructions above.
+## 3 작은-놀이 지도
 
-Maps are configured in the Python files in `pysc2/maps/`. The configs can set
-player and time limits, whether to use the game outcome or curriculum score, and
-a handful of other things. For more information about the maps, and how to
-configure your own, read the [maps documentation](docs/maps.md).
+논문에서 참고한 작은-놀이 지도 파일은 `pysc2/maps/`아래에 저장됨 그러나 반드기 `$SC2PATH/Maps`에 설치해야 한다. 위으 내려받기 지침을 따르시오.
 
-# Replays
+지도는 `pysc2/maps/`안에 파이썬 파일로 구성된다. 구성은 놀이꾼과 시간제한을 설정할수 있다, 놀이 결과 또는 과정점수(curriculum score) 사용 여부, 그리고 몇가지 다른 것들. 지도에 관한 더많은 정보에 대해, 그리고 자신만을 위한 구성방법, [지도 문서](https://github.com/zeuseyera/pysc2/blob/master/docs/maps.md)를 봐라.
 
-A replay lets you review what happened during a game. You can see the actions
-and observations that each player made as they played.
+## 4 재생
 
-Blizzard is releasing a large number of anonymized 1v1 replays played on the
-ladder. You can find instructions for how to get the
-[replay files](https://github.com/Blizzard/s2client-proto#downloads) on their
-site. You can also review your own replays.
+재생은 놀이중에 생긴 것을 검토할수 있다. 각 놀이꾼이 논 소행 그리고 관찰을 볼수 있다.
 
-Replays can be played back to get the observations and actions made during that
-game. The observations are rendered at the resolution you request, so may differ
-from what the human actually saw. Similarly the actions specify a point, which
-could reflect a different pixel on the human's screen, so may not have an exact
-match in our observations, though they should be fairly similar.
+블리자드는 승자전(ladder, tournament)에서 1대1 놀이한 재생을 익명으로 다수를 배포했다. 그 사이트에서 [재생파일](https://github.com/Blizzard/s2client-proto#downloads)을 가져오는 방법에 대한 지침을 찾을수 있다. 또한 자신만의 재생을 검토할수 있다.
 
-Replays are version dependent, so a 3.16 replay will fail in a 3.16.1 or 3.17
-binary.
+재생은 놀이하는 동안 만들어진 관찰과 소행을 얻기위해 재생할수 있다. 관찰은 요청한 해상도로 칠해진 것이다, 그래서 사람이 실제로 본것과 다를수 있다. 마찬가지로 소행은 지점을 지정한ㄷ, 이것은 사람이 화면에서 다른 화소로 반영할 것이다, 그래서 우리의 관찰에 정확히 일치하지 낳을수 있다, 그래고 상당히 비슷할 것이다.
 
-You can visualize the replays with the full game, or with `pysc2.bin.play`.
-Alternatively you can run `pysc2.bin.replay_actions` to process many replays
-in parallel.
+재생은 판(버전)에 의존한다, 따라서 3.16 재생은 3.16.1 또는 3.17 형식(binary)에서 실패한다.
+
+전체놀이를 재생으로 시각화할수 있다, 또는 `pysc2.bin.play`로. 아니면 병렬로 많은 재생을 처리하기 위해 `pysc2.bin.replay_actions`을 실행할수 있다.  
+
+
+

@@ -1,45 +1,36 @@
-# StarCraft II Maps
 
-## Map config
+| [스타크래프트 II 학습 환경](../README.md) | [환경](../docs/environment.md) | [작은놀이](../docs/mini_games.md) | [지도](../docs/maps.md) |  
+| --- | --- | --- | --- |  
 
-SC2Map files are what is used by the SC2 game, but they can be used differently,
-and those differences are defined in our map configs. The config gives
-information like how long the episodes last, how many players it can play, and
-how to score it.
+# 스타크래프트 II 지도
 
-To create your own map config, just subclass the base Map class and override
-some of the settings. The most important is to define the directory and filename
-for the SC2Map. Any Map subclass will be automatically picked up as long as it's
-imported somewhere.
+## 1 지도 구성
 
-## DeepMind Mini-Games
+스크2지도 파일일은 스크2 놀이에서 사용되는 것이다, 그러나 다르게 사용될수 있다, 그리고 이러한 차이는 지도 구성에서 정의된다. 구성은 토막(episode)이 얼마나 오래 지속되는지 정보를 제공한다, 그리고 점수를 매기는 방법.
 
-The [mini-games](mini_games.md) are designed to be single-player, fixed length
-and exercise different aspects of the game. They expose a score/reward which
-lets the agent know how well it is doing. The score should differentiate poor
-agents (eg random) from good agents.
+자신만의 지도를 구성하려면, 지도 기본부류를 그냥 하위부류로 한다(복사) 그리고 일부 설정을 덮어쓴다. 중요한 것은 스크2지도에 대해 디렉토리와 파일이름을 정의한다. 모든 지도는 어딘가에서 가져온 경우 자동으로 하위부류가 된다.
 
-## Ladder
 
-[Ladder maps](http://wiki.teamliquid.net/starcraft2/Maps/Ladder_Maps/Legacy_of_the_Void)
-are the maps played by human players on Battle.net. There are just a handful
-active at a time. Every few months a new season starts bringing a new set of
-maps.
+## 2 딥마인드 작은-놀이
 
-Some of the maps have suffixes LE or TE. LE means Ladder Edition. These are
-community maps that were edited by Blizzard for bugs and made ready for the
-ladder pool. TE means Tournament Edition. These maps were used in tournaments.
+[작은-놀이](https://github.com/zeuseyera/pysc2/blob/master/docs/mini_games.md)는 혼자놀기로 구상되었다, 길이는 고정되었다 그리고 놀이의 다른 양상을 연습한다. 똘마니가 얼마나 잘 하고 있는지 알려주는 점수/포상을 보여준다. 점수는 형편없는 똘마니(예, 뿌림)로 부터 좋은 똘마니를 구분한다.
 
-They are all multiplayer maps with fairly long time limits.
 
-## Melee
+## 3 승자전(Ladder)
 
-These are maps made specifically for machine learning. They resemble
-ladder maps in format, but may be smaller sizes and aren't necessarily balanced
-for high level play.
+승자전 지도는 `배틀넷(Battle.net)`에서 사람이 노는 지도다. 이것들은 한번만 활동한 것이다. 몇 달마다 새로운 지도 집합을 가져와서 새로운 시기를 시작한다.
 
-The **Flat** maps have no special features on the terrain, encouraging easy
-attacking. The number specifies the map size.
+어떤 지도는 `LE` 또는 `TE` 접미사가 있다. `LE`는 승자전 (Ladder Edition)을 의미한다. 이것들은 블리자드가 버그를 수정하고 승자전 모음을 위해 준비한 군집(community)지도다. `TE`는 경쟁 (Tournament Edition)을 의미한다. 이 지도는 경쟁에서 사용된다.
 
-The **Simple** maps are more normal with expansions, ramps, and lanes of attack,
-but are smaller than normal ladder maps. The number specifies the map size.
+이것들은 모두 시간제한이 상당히 긴 다중 놀이꾼 지도다.
+
+
+## 4 난투전(Melee)
+
+이것은 기계학습을 위해 특별히 만들어진 지도다. 이 형식은 승자전 지도를 닮았다, 그러나 작은 크기이고 높은 수준의 놀이를 위해 균형이 잡힌것이 아니다.
+
+**평탄(Flat)** 지도는 지형에 특별한 특징이 없다, 쉬운 공격을 권장한다. 숫자는 지도크기를 지정한다.
+
+**간단(Simple)** 지도는 확장이 더 평범하다, 경사로, 그리고 공격 경로, 그러나 평범한 승자전 지도보다 작다. 숫자는 지도의 크기를 지정한다.
+
+
