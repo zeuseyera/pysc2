@@ -93,6 +93,12 @@ module 'websocket' has no attribute 'WebSocketBadStatusException'
 ```
 
 ``` javascript  
+No such file or directory: 'C:/Program Files (x86)/StarCraft II\\Maps\\Melee\\Simple64.SC2Map' 발생
+  => https://github.com/Blizzard/s2client-proto#downloads 에서 Melee 지도를 내려받고
+  => C:/Program Files (x86)/StarCraft II/Maps 폴더에 압축을 푼다
+```
+
+``` javascript  
 $ python -m pysc2.bin.agent --map Simple64
 ```  
 
