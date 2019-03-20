@@ -70,6 +70,28 @@ $ pip install pysc2/
 환경을 평가하기 위해 똘마니를 실행할수 있다. 사용자인터페이스(UI)는 똘마니의 소행을 보여준다 그리고 디버깅과 시각화 목적으로 유용하다.
 
 ``` javascript  
+모듈이 없으면 설치하라...
+
+No module named 'absl'             => pip install absl-py
+No module named 'future'           => pip install future
+No module named 'portpicker'       => pip install portpicker
+No module named 'websocket'        => pip install websocket
+No module named 's2clientprotocol' => pip install s2clientprotocol
+No module named 'pygame'           => pip install pygame
+No module named 'skvideo'          => pip install scikit-video
+cannot import name 'NUMPY_MKL'     => pip install scipy
+```
+
+``` javascript  
+remote_controller.py 모듈 class RemoteController(object): 에서 예외발생
+=> module 'websocket' has no attribute 'WebSocketBadStatusException'
+
+def _connect(self, host, port, proc, timeout_seconds):
+  except websocket.WebSocketBadStatusException as err:
+  
+```
+
+``` javascript  
 $ python -m pysc2.bin.agent --map Simple64
 ```  
 
