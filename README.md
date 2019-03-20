@@ -83,12 +83,13 @@ cannot import name 'NUMPY_MKL'     => pip install scipy
 ```
 
 ``` javascript  
-remote_controller.py 모듈 class RemoteController(object): 에서 예외발생
-=> module 'websocket' has no attribute 'WebSocketBadStatusException'
+remote_controller.py 모듈
+class RemoteController(object): 에서 예외발생시 모듈 설치
+  def _connect(self, host, port, proc, timeout_seconds):
+    except websocket.WebSocketBadStatusException as err:
 
-def _connect(self, host, port, proc, timeout_seconds):
-  except websocket.WebSocketBadStatusException as err:
-  
+module 'websocket' has no attribute 'WebSocketBadStatusException'
+  => pip install websocket-client
 ```
 
 ``` javascript  
