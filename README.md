@@ -70,6 +70,38 @@ $ pip install pysc2/
 환경을 평가하기 위해 똘마니를 실행할수 있다. 사용자인터페이스(UI)는 똘마니의 소행을 보여준다 그리고 디버깅과 시각화 목적으로 유용하다.
 
 ``` javascript  
+$ python -m pysc2.bin.agent --map Simple64
+```  
+
+비스코드에서 실행시 시발(`launch.json`) 꾸밈파일에 설정을 하면 좀더 편리하다.
+``` javascript
+{
+    // IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.
+    // 기존 특성에 대한 설명을 보려면 가리킵니다.
+    // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387 을(를) 방문하세요.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // 여기에 파이썬 명령을 대체하여 꾸민다
+            "name": "Python: 스타크래프트2 기계학습-Simple64",   // 시발 명칭
+            "type": "python",
+            "request": "launch",
+            // 파이썬 실행명령: python -m pysc2.bin.agent --map Simple64
+            // "-m" 옵션은 자동으로 붙음...
+            //"module": "enter-your-module-name-here",
+            "module": "pysc2.bin.agent",    // 실제 실행할 파이썬 모듈이름
+            // "--map Simple64" 옵션 꾸밈
+            "args": [
+                "--map",
+                "Simple64"
+            ],
+            "console": "integratedTerminal"
+        },
+    ]
+}
+```
+
+``` javascript  
 모듈이 없으면 설치하라...
 
 No module named 'absl'             => pip install absl-py
@@ -97,10 +129,6 @@ No such file or directory: 'C:/Program Files (x86)/StarCraft II\\Maps\\Melee\\Si
   => https://github.com/Blizzard/s2client-proto#downloads 에서 Melee 지도를 내려받고
   => C:/Program Files (x86)/StarCraft II/Maps 폴더에 압축을 푼다
 ```
-
-``` javascript  
-$ python -m pysc2.bin.agent --map Simple64
-```  
 
 이것은 기본적으로 뿌림하여 똘마니를 실행한다, 그러나 다른것을 지정할수 있다 만약 자신이 원하면.
 
